@@ -1,25 +1,31 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import InputElement from './shared/components/InputElement';
+import { Box, Grid, ThemeProvider } from '@mui/material';
+import { theme } from './theme/theme';
+import PaginationElement from './shared/components/PaginationElement';
+import { SelectElement } from './shared/components/SelectElement';
+import TableElement from './shared/components/TableElement';
+import Sidebar from './shared/components/Sidebar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+
+      <Box padding={5}>
+
+        {/* <InputElement required={false} error={false} name='n' type='text' value={''} helperText='' id=''  ></InputElement> */}
+        {/* <PaginationElement></PaginationElement> */}
+        {/* <SelectElement></SelectElement> */}
+        {/* <TableElement></TableElement> */}
+        <Grid container>
+          <Grid item sx={{ width: '300px' }} border={1}>
+            <Sidebar></Sidebar>
+          </Grid>
+        </Grid>
+      </Box>
+    </ThemeProvider>
   );
 }
 

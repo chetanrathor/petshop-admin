@@ -15,9 +15,9 @@ const menus = [
         path: '/users'
     },
     {
-        id: 'brands',
-        name: 'Brands',
-        path: '/brands'
+        id: 'product',
+        name: 'Products',
+        path: '/products'
     },
     {
         id: 'categories',
@@ -58,12 +58,12 @@ const Sidebar = () => {
     const isRouteActivated = (path: string) => {
 
 
-     
 
-            if (location.pathname === (path)) {
-                return true
-            }
-        
+
+        if (location.pathname === (path)) {
+            return true
+        }
+
 
         return false
     }

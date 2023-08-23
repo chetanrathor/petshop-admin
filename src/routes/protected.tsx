@@ -3,6 +3,8 @@ import MainLayout from "../components/layout/MainLayout"
 import DashboardRoute from "../feature/dashboard/routes";
 import UserRoutes from "../feature/user/routes";
 import UserDetails from "../feature/user/components/UserDetails";
+import OrderRoutes from "../feature/order/routes";
+import ProductRoute from "../feature/product/routes";
 
 const App = () => {
     const location = useLocation()
@@ -25,6 +27,12 @@ export const protectedRoutes = [
 
             {
                 path: '/users/*', element: <UserRoutes></UserRoutes>,
+            },
+            {
+                path: '/orders/*', element: <OrderRoutes></OrderRoutes>,
+            },
+            {
+                path: '/Products/*', element: <ProductRoute></ProductRoute>,
             },
             // { path: '/profile', element: <Profile /> },
             // { path: '/', element: <Dashboard /> },

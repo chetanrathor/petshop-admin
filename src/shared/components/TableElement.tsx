@@ -36,11 +36,11 @@ const rows = [
 const TableElement = () => {
     const navigate = useNavigate()
     return (
-        <TableContainer component={Paper} sx={{ maxHeight: 440 }} onClick={()=>{navigate('/users/1')}}>
-            <Table stickyHeader  sx={{ minWidth: 650, }} aria-label="simple table">
+        <TableContainer component={Paper} sx={{ maxHeight: 440 }} onClick={() => { navigate('/products/1') }}>
+            <Table stickyHeader sx={{ minWidth: 650, }} aria-label="simple table">
                 <TableHead >
                     <TableRow >
-                        <TableCell sx={{ borderTopRightRadius: 2,backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+                        <TableCell sx={{ borderTopRightRadius: 2, backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
                         <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
                         <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
                         <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>

@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, MenuItem } from '@mui/material'
+import { FormControl, FormHelperText, MenuItem, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 export const SelectElement = () => {
@@ -7,8 +7,10 @@ export const SelectElement = () => {
         setAge(event.target.value);
     };
     return (
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ m: 1, width: '100%' }} >
             <Select
+
+                fullWidth
                 value={age}
                 onChange={handleChange}
                 displayEmpty
@@ -21,7 +23,7 @@ export const SelectElement = () => {
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
             </Select>
-            <FormHelperText>Without label</FormHelperText>
+            {/* <FormHelperText>Without label</FormHelperText> */}
         </FormControl>
     )
 }

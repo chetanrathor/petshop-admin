@@ -29,7 +29,8 @@ export const theme = createTheme({
         h1: {
             fontFamily: 'Nunito',
             fontWeight: '700',
-            fontSize: '32px'
+            fontSize: '32px',
+            color:'#                                                                                            2D2F55'
 
         },
         h2: {

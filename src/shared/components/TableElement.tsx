@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { theme } from '../../theme/theme';
 import { Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function createData(
     name: string,
@@ -25,19 +26,25 @@ const rows = [
     createData('Eclair', 262, 16.0, 24, 6.0),
     createData('Cupcake', 305, 3.7, 67, 4.3),
     createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
 const TableElement = () => {
+    const navigate = useNavigate()
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650, }} aria-label="simple table">
-                <TableHead>
-                    <TableRow sx={{ backgroundColor: 'rgb(255,245,248)', }}>
-                        <TableCell sx={{ borderTopRightRadius: 2 }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+        <TableContainer component={Paper} sx={{ maxHeight: 440 }} onClick={()=>{navigate('/users/1')}}>
+            <Table stickyHeader  sx={{ minWidth: 650, }} aria-label="simple table">
+                <TableHead >
+                    <TableRow >
+                        <TableCell sx={{ borderTopRightRadius: 2,backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

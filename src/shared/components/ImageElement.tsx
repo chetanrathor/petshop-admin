@@ -1,7 +1,7 @@
 import React from 'react'
 interface Properties {
-    height: string,
-    width: string,
+    height?: string,
+    width?: string,
     src: string,
     isPublicAsset: boolean
 }

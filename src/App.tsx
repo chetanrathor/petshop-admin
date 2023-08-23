@@ -8,24 +8,21 @@ import PaginationElement from './shared/components/PaginationElement';
 import { SelectElement } from './shared/components/SelectElement';
 import TableElement from './shared/components/TableElement';
 import Sidebar from './shared/components/Sidebar';
+import AppRoute from './routes';
+import AppProvier from './provider/AppProvier';
+import { useLocation } from 'react-router-dom';
 
 function App() {
+ 
   return (
-    <ThemeProvider theme={theme}>
 
-      <Box padding={5}>
 
-        {/* <InputElement required={false} error={false} name='n' type='text' value={''} helperText='' id=''  ></InputElement> */}
-        {/* <PaginationElement></PaginationElement> */}
-        {/* <SelectElement></SelectElement> */}
-        {/* <TableElement></TableElement> */}
-        <Grid container>
-          <Grid item sx={{ width: '300px' }} border={1}>
-            <Sidebar></Sidebar>
-          </Grid>
-        </Grid>
-      </Box>
-    </ThemeProvider>
+
+
+    <AppProvier>
+      <AppRoute></AppRoute>
+    </AppProvier>
+
   );
 }
 

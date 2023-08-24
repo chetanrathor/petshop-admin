@@ -5,6 +5,7 @@ import UserRoutes from "../feature/user/routes";
 import UserDetails from "../feature/user/components/UserDetails";
 import OrderRoutes from "../feature/order/routes";
 import ProductRoute from "../feature/product/routes";
+import ConsultationRoutes from "../feature/consultation/routes";
 
 const App = () => {
     const location = useLocation()
@@ -33,6 +34,9 @@ export const protectedRoutes = [
             },
             {
                 path: '/Products/*', element: <ProductRoute></ProductRoute>,
+            },
+            {
+                path: '/Consultations/*', element: <ConsultationRoutes></ConsultationRoutes>,
             },
             // { path: '/profile', element: <Profile /> },
             // { path: '/', element: <Dashboard /> },

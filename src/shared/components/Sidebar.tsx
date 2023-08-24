@@ -45,9 +45,9 @@ const menus = [
         path: '/appointments'
     },
     {
-        id: 'consultancies',
-        name: 'Consultancies',
-        path: '/consultancies'
+        id: 'Consultations',
+        name: 'Consultations',
+        path: '/Consultations'
     }
 ]
 

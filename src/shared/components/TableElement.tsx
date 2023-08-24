@@ -36,7 +36,7 @@ const rows = [
 const TableElement = () => {
     const navigate = useNavigate()
     return (
-        <TableContainer component={Paper} sx={{ maxHeight: 440 }} onClick={() => { navigate('/products/1') }}>
+        <TableContainer component={Paper} sx={{ maxHeight: 440 }} onClick={() => { navigate('/consultations/1') }}>
             <Table stickyHeader sx={{ minWidth: 650, }} aria-label="simple table">
                 <TableHead >
                     <TableRow >

@@ -90,7 +90,7 @@ const Sidebar = () => {
                         {
                             menus.map((item) => {
                                 return (
-                                    <Grid item sx={{ cursor: 'pointer' }} onClick={() => { handelRouteChangeClick(item.path) }} padding={2} width={'100%'} bgcolor={isRouteActivated(item.path) ? theme.palette.primary.main : ''} borderRadius={2} >
+                                    <Grid key={item.id} item sx={{ cursor: 'pointer' }} onClick={() => { handelRouteChangeClick(item.path) }} padding={2} width={'100%'} bgcolor={isRouteActivated(item.path) ? theme.palette.primary.main : ''} borderRadius={2} >
                                         <Grid container >
                                             <Grid item container gap={2}>
                                                 <PersonIcon sx={{ color: isRouteActivated(item.path) ? '#FFF' : theme.palette.secondary.main }}></PersonIcon>

@@ -45,12 +45,12 @@ const Dashboard = () => {
         {
             name: 'Profit',
             value: 7890,
-            id: 7
+            id: 8
         },
         {
             name: 'Loss',
             value: 7890,
-            id: 7
+            id: 9
         }
     ];
     const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
@@ -121,7 +121,7 @@ const Dashboard = () => {
                         data={data}
                     />
                 </Grid>
-                <Grid lg={4}>
+                <Grid >
                     <Chart
                         type={'line'}
                         data={data}

@@ -1,5 +1,5 @@
 import { get } from "../../../api";
 import { ApiResponse } from "../../../types";
-import { Card } from "../types";
+import { Card, CardsFilter } from "../types";
 
-export const getCards = () => get<{}, ApiResponse<Card[]>>({ endpoint: 'cards' })
+export const getCards = (params: CardsFilter) => get<CardsFilter, ApiResponse<Card[]>>({ endpoint: 'cards', params })

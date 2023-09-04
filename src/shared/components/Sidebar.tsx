@@ -3,6 +3,9 @@ import { Box, Grid, Typography } from '@mui/material';
 import { theme } from '../../theme/theme';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setGlobalSatate } from '../../store/globalSlice';
+import { GlobalState } from '../../constants/global-state';
 const menus = [
     {
         id: 'dashboard',
@@ -54,21 +57,16 @@ const menus = [
 const Sidebar = () => {
     const location = useLocation()
     const navigate = useNavigate()
-    const [currentRoute, setCurrentRoute] = useState('/dashboard')
+    const dispatch = useDispatch()
     const isRouteActivated = (path: string) => {
-
-
-
-
         if (location.pathname === (path)) {
             return true
         }
-
-
         return false
     }
-    const handelRouteChangeClick = (to: string) => {
-        navigate(to)
+    const handelRouteChangeClick = (payload: { to: string, name: string }) => {
+        dispatch(setGlobalSatate(payload.name))
+        navigate(payload.to)
     }
 
 
@@ -90,7 +88,7 @@ const Sidebar = () => {
                         {
                             menus.map((item) => {
                                 return (
-                                    <Grid key={item.id} item sx={{ cursor: 'pointer' }} onClick={() => { handelRouteChangeClick(item.path) }} padding={2} width={'100%'} bgcolor={isRouteActivated(item.path) ? theme.palette.primary.main : ''} borderRadius={2} >
+                                    <Grid key={item.id} item sx={{ cursor: 'pointer' }} onClick={() => { handelRouteChangeClick({ name: item.name, to: item.path }) }} padding={2} width={'100%'} bgcolor={isRouteActivated(item.path) ? theme.palette.primary.main : ''} borderRadius={2} >
                                         <Grid container >
                                             <Grid item container gap={2}>
                                                 <PersonIcon sx={{ color: isRouteActivated(item.path) ? '#FFF' : theme.palette.secondary.main }}></PersonIcon>

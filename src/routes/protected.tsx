@@ -6,6 +6,10 @@ import UserDetails from "../feature/user/components/UserDetails";
 import OrderRoutes from "../feature/order/routes";
 import ProductRoute from "../feature/product/routes";
 import ConsultationRoutes from "../feature/consultation/routes";
+import CategoryRoute from "../feature/category/routes";
+import SpecyRoutes from "../feature/specy/routes";
+import BlogRoutes from "../feature/blog/routes";
+import AppointmentRoutes from "../feature/appointment/routes";
 
 const App = () => {
     const location = useLocation()
@@ -38,8 +42,18 @@ export const protectedRoutes = [
             {
                 path: '/Consultations/*', element: <ConsultationRoutes></ConsultationRoutes>,
             },
-            // { path: '/profile', element: <Profile /> },
-            // { path: '/', element: <Dashboard /> },
+            {
+                path: '/categories/*', element: <CategoryRoute></CategoryRoute>,
+            },
+            {
+                path: '/species/*', element: <SpecyRoutes></SpecyRoutes>,
+            },
+            {
+                path: '/blogs/*', element: <BlogRoutes></BlogRoutes>,
+            },
+            {
+                path: '/appointments/*', element: <AppointmentRoutes></AppointmentRoutes>,
+            },
             { path: '*', element: <Navigate to="." /> },
         ],
     },

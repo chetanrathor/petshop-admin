@@ -17,7 +17,6 @@ const ButtonElement = ({ sx }: ButtonElementPops) => {
     return (
         <Button sx={{ paddingX: 3, paddingY: 2, borderRadius: 3 }} variant='contained' >
             <Grid2 container columnGap={2} alignItems={'center'}>
-
                 <ImageElement src={'images/btn_icon.svg'} isPublicAsset={true} ></ImageElement>  <Typography variant='h5' color={warning}>Alex</Typography>
             </Grid2>
         </Button>

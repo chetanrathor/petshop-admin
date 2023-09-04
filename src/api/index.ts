@@ -22,5 +22,18 @@ export const post = <ParamsType, DataType, ResponseType>(options: ApiCallOptions
     return axios.post<ResponseType>(url, data, { params })
 
 }
+export const patch = <ParamsType, DataType, ResponseType>(options: ApiCallOptions<ParamsType, DataType>) => {
+    const { endpoint, data, params } = options
+    const url = `${baseURL}${endpoint}`
+    return axios.patch<ResponseType>(url, data, { params })
+
+}
+
+export const deleteAPI = <ResponseType>(options: ApiCallOptions) => {
+    const { endpoint, data, params } = options
+    const url = `${baseURL}${endpoint}`
+    return axios.delete<ResponseType>(url, { params })
+
+}
 
 // get<Filter>({ endpoint: '', params: { limit: 10 } })

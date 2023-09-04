@@ -3,6 +3,7 @@ import TableElement from '../../../shared/components/TableElement'
 import { Grid } from '@mui/material'
 import PaginationElement from '../../../shared/components/PaginationElement'
 import ListLayout from '../../../components/layout/ListLayout'
+import SectionHeading from '../../../components/UI/SectionHeading'
 
 const Users = () => {
     return (
@@ -14,9 +15,12 @@ const Users = () => {
         //         <PaginationElement></PaginationElement>
         //     </Grid>
         // </Grid>
-        <ListLayout>
-            <TableElement></TableElement>
-        </ListLayout>
+        <>
+            <SectionHeading></SectionHeading>
+            <ListLayout>
+                <TableElement></TableElement>
+            </ListLayout>
+        </>
 
     )
 }

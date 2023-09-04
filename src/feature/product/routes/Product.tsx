@@ -4,6 +4,7 @@ import TableElement from '../../../shared/components/TableElement'
 
 const Product = () => {
     return (
+        
         <ListLayout>
             <TableElement></TableElement>
         </ListLayout>

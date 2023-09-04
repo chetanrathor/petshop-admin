@@ -1,8 +1,9 @@
-import { Button, Card, CardActions, CardContent, Grid, Typography } from '@mui/material'
-import React from 'react'
-import { theme } from '../../../theme/theme'
-import { Chart } from 'react-chartjs-2'
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Tooltip, scales } from "chart.js";
+import { Card, CardContent, Grid, Typography } from '@mui/material';
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Tooltip } from "chart.js";
+import { Chart } from 'react-chartjs-2';
+import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook';
+import { theme } from '../../../theme/theme';
+import { fetchDashboardData } from '../state/dashboard.slice';
 const Dashboard = () => {
     const random = () => { return Math.floor(Math.random()) * 100 }
     const secondary = theme.palette.secondary.main
@@ -81,6 +82,9 @@ const Dashboard = () => {
             },
         ],
     };
+    const year = useAppSelector((state) => state.dashboard.year)
+    const dispatch = useAppDispatch()
+    dispatch(fetchDashboardData(year))
 
     ChartJS.register(
         LinearScale,
@@ -93,7 +97,8 @@ const Dashboard = () => {
     );
 
     return (
-        <Grid container  gap={2}>
+
+        <Grid container gap={2}>
 
             {
                 cards.map((item) => {

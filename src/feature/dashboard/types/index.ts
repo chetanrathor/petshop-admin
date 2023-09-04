@@ -6,5 +6,10 @@ export type Card = {
 
 export type Dashboard = {
     graph: any,
-    card: Card[]
+    card: Card[],
+    year: number
+}
+
+export type CardsFilter = {
+    year: number
 }

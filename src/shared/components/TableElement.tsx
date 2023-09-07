@@ -9,6 +9,8 @@ import Paper from '@mui/material/Paper';
 import { theme } from '../../theme/theme';
 import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { camelCaseToCapitalized } from '../../utils';
 
 function createData(
     name: string,
@@ -33,32 +35,49 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-const TableElement = () => {
+const TableElement = ({ data }: any) => {
     const navigate = useNavigate()
+    console.log('data', data)
+    const headings = data.length ? Object.keys(data[0]) : []
+    console.log('headings', headings)
+    const handelRowClick = (id: string) => {
+        navigate(id)
+    }
+
     return (
-        <TableContainer component={Paper} sx={{ maxHeight: 440 }} onClick={() => { navigate('/consultations/1') }}>
+        <TableContainer component={Paper} sx={{ maxHeight: 440 }} >
             <Table stickyHeader sx={{ minWidth: 650, }} aria-label="simple table">
                 <TableHead >
                     <TableRow >
-                        <TableCell sx={{ borderTopRightRadius: 2, backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
-                        <TableCell sx={{ backgroundColor: 'rgb(255,245,248)', }}><Typography variant='h5'>Dessert (100g serving)</Typography> </TableCell>
+                        {
+                            headings.map((item: any) => {
+                                return (<>
+
+                                    <TableCell sx={{ borderTopRightRadius: 2, backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>{camelCaseToCapitalized(item)}</Typography> </TableCell>
+                                </>)
+                            })
+                        }
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {data.map((row: any, index: any) => (
                         <TableRow
+                            sx={{ cursor: 'pointer' }}
+                            onClick={() => { handelRowClick(row['id']) }}
                             key={row.name}
                         >
-                            <TableCell component="th" scope="row">
-                                <Typography variant='h6'>{row.name}</Typography>
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
+                            {
+                                headings.map((col) => {
+                                    return (<>
+                                        <TableCell component="th" scope="row">
+                                            <Typography variant='h6'>{(col !== 'id' ? row[col] : index+1)}</Typography>
+                                        </TableCell>
+                                    </>)
+                                })
+                            }
+
+
                         </TableRow>
                     ))}
                 </TableBody>

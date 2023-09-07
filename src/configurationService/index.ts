@@ -1,5 +1,3 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
 
 const getString = (key: string) => `${process.env}.REACT_APP_${key}`
 const getNodeENV = () => process.env.REACT_APP_NODE_ENV
@@ -11,4 +9,4 @@ const getBoolean = (key: string) => {
     return false
 }
 
-export const getApiBaseURL = () => getString('API_BASE_URL')
+export const getApiBaseURL = () => process.env.REACT_APP_BASE_API_URL

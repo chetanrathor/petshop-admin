@@ -13,10 +13,10 @@ export const fetchDashboardData = createAsyncThunk('dashboard/data/year', async 
     //     return rejectWithValue(error.response.data)
 
     // }
-    const response = await getCards({ year })
-        return response.data
+    //     return response.data
 })
-
+let year = 20
+// const response = await getCards({ year })
 
 
 const date = new Date()

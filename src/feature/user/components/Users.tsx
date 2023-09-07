@@ -16,7 +16,6 @@ const Users = () => {
         //     </Grid>
         // </Grid>
         <>
-            <SectionHeading></SectionHeading>
             <ListLayout>
                 <TableElement></TableElement>
             </ListLayout>

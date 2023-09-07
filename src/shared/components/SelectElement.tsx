@@ -11,16 +11,16 @@ export type MenuItem = {
 
 export type SelectElementProperties = {
     menuItem: MenuItem[],
-    handleChange: (e: SelectChangeEvent) => void
+    handleChange: (e: SelectChangeEvent) => void,
+    value?: string
 }
-export const SelectElement = ({ menuItem, handleChange }: SelectElementProperties) => {
-    const selectedYear = useSelector((state: RootState) => state.dashboard.year)
+export const SelectElement = ({ menuItem, handleChange, value }: SelectElementProperties) => {
     return (
         <FormControl sx={{ m: 1, width: '100%' }} >
             <Select
 
                 fullWidth
-                value={String(selectedYear)}
+                value={value}
                 onChange={(e) => { handleChange(e) }}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}

@@ -33,6 +33,11 @@ const menus = [
         path: '/species'
     },
     {
+        id: 'brands',
+        name: 'Brands',
+        path: '/brands'
+    },
+    {
         id: 'blogs',
         name: 'Blogs',
         path: '/blogs'

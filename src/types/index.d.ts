@@ -1,10 +1,12 @@
+import React, { ReactNode } from "react"
+
 export type ApiCallOptions<ParamsType = {}, DataType = {}> = {
     endpoint: string,
     params?: ParamsType,
     data?: DataType
 }
 
-export type SortOrder = 'ASC' | 'DSC'
+export type SortOrder = 'ASC' | 'DESC'
 
 export type Filter = {
     limit: number,
@@ -21,3 +23,13 @@ export type ApiResponse<Response> = {
 
 
 
+export type ModalComponentProperties = {
+    child: JSX.Element
+}
+
+
+
+export type ModalSlice = {
+    open: boolean,
+    children: ModalChild
+}

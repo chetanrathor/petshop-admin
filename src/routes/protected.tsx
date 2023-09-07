@@ -10,6 +10,8 @@ import CategoryRoute from "../feature/category/routes";
 import SpecyRoutes from "../feature/specy/routes";
 import BlogRoutes from "../feature/blog/routes";
 import AppointmentRoutes from "../feature/appointment/routes";
+import ModalComponent from "../shared/components/ModalComponent";
+import BrandRoutes from "../feature/brand/routes";
 
 const App = () => {
     const location = useLocation()
@@ -19,6 +21,7 @@ const App = () => {
             <MainLayout>
                 <Outlet></Outlet>
             </MainLayout>
+            <ModalComponent></ModalComponent>
         </>
     )
 }
@@ -53,6 +56,9 @@ export const protectedRoutes = [
             },
             {
                 path: '/appointments/*', element: <AppointmentRoutes></AppointmentRoutes>,
+            },
+            {
+                path: '/brands/*', element: <BrandRoutes></BrandRoutes>,
             },
             { path: '*', element: <Navigate to="." /> },
         ],

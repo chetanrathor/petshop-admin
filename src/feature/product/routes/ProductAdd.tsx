@@ -28,11 +28,18 @@ const ProductAdd = () => {
             </Grid>
             <Grid item container paddingBottom={5} justifyContent={'space-between'}>
                 <Grid width={'48%'}>
-                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Product Title/Name</Typography>
+                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Maximum Retail Price</Typography>
                     <TextField fullWidth ></TextField>
                 </Grid>
                 <Grid width={'48%'}>
-                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Category</Typography>
+                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Selling Price</Typography>
+                    <TextField fullWidth ></TextField>
+                </Grid>
+
+            </Grid>
+            <Grid item container paddingBottom={5} justifyContent={'space-between'}>
+                <Grid width={'48%'}>
+                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Pet Specy</Typography>
                     {/* <TextField fullWidth ></TextField> */}
                     <FormControl fullWidth>
                         <Select >
@@ -42,8 +49,39 @@ const ProductAdd = () => {
                         </Select>
                     </FormControl>
                 </Grid>
+                <Grid width={'48%'}>
+                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Discount</Typography>
+                    <TextField fullWidth ></TextField>
+                </Grid>
+
+            </Grid>
+            <Grid item container paddingBottom={5} justifyContent={'space-between'}>
+                <Grid width={'48%'}>
+                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Brand</Typography>
+                    {/* <TextField fullWidth ></TextField> */}
+                    <FormControl fullWidth>
+                        <Select >
+                            <MenuItem>Dog</MenuItem>
+                            <MenuItem>Dog</MenuItem>
+                            <MenuItem>Dog</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid width={'48%'}>
+                    <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Breed Type</Typography>
+                    {/* <TextField fullWidth ></TextField> */}
+                    <FormControl fullWidth>
+                        <Select >
+                            <MenuItem>Dog</MenuItem>
+                            <MenuItem>Dog</MenuItem>
+                            <MenuItem>Dog</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+
             </Grid>
         </Grid>
+
     )
 }
 

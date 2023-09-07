@@ -1,5 +1,9 @@
 import { Filter } from "../../../types";
 
 export type SpecyFilters = Filter & {}
-export type AddSpecy = {}
-export type UpdateSpecy = AddSpecy & {}
+export type AddSpecy = {
+    name: string
+}
+export type UpdateSpecy = AddSpecy & {
+    id: string
+}

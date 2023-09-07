@@ -5,16 +5,24 @@ import { getToken } from "../token";
 
 
 const getAuthHeaders = () => {
-    return {
-        'Authorization': `Beare ${getToken()}`
+    const token = getToken()
+    console.log('token', token)
+    if (token) {
+        return {
+            'Authorization': `Beare ${token}`
+        }
     }
+
+    return {}
+
 }
 const baseURL = getApiBaseURL()
 export const get = <ParamsType, ResponseType>(options: ApiCallOptions<ParamsType>) => {
     const { endpoint, params } = options
     const url = `${baseURL}${endpoint}`
-    return axios.get<ResponseType>(url, { params, headers: getAuthHeaders() })
+    return axios.get<ResponseType>(url, { params,  })
 }
+
 
 export const post = <ParamsType, DataType, ResponseType>(options: ApiCallOptions<ParamsType, DataType>) => {
     const { endpoint, data, params } = options
@@ -35,5 +43,6 @@ export const deleteAPI = <ResponseType>(options: ApiCallOptions) => {
     return axios.delete<ResponseType>(url, { params })
 
 }
+
 
 // get<Filter>({ endpoint: '', params: { limit: 10 } })

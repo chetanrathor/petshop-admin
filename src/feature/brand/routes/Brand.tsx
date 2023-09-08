@@ -2,21 +2,20 @@ import React, { useEffect } from 'react'
 import ListLayout from '../../../components/layout/ListLayout'
 import TableElement from '../../../shared/components/TableElement'
 import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook'
-import { useDispatch } from 'react-redux'
-import { fetchSpecies } from '../state/specy.slice'
+import { fetchBrands } from '../state/brand.slice'
 
-const Specy = () => {
-    const species = useAppSelector((state) => state.specy.species)
+const Brand = () => {
+    const brands = useAppSelector((state) => state.brand.brands)
     const dispatch = useAppDispatch()
-
     useEffect(() => {
-        dispatch(fetchSpecies({ limit: 0, offset: 0, order: 'DESC' }))
+        dispatch(fetchBrands({ limit: 0, offset: 0, order: 'DESC' }))
     }, [])
+    console.log('brands==============================', brands)
     return (
         <ListLayout>
-            <TableElement data={species}></TableElement>
+            <TableElement data={brands}></TableElement>
         </ListLayout>
     )
 }
 
-export default Specy
+export default Brand

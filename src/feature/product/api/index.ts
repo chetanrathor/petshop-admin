@@ -1,6 +1,7 @@
 import { get, patch, post } from "../../../api";
-import { AddProduct, ProductFilters, UpdateProduct } from "../types";
-export const getProducts = (params: ProductFilters) => get({ endpoint: 'products', params })
+import { ApiResponse } from "../../../types";
+import { AddProduct, GetProducts, ProductFilters, UpdateProduct } from "../types";
+export const getProducts = (params: ProductFilters) => get<ProductFilters, ApiResponse<GetProducts>>({ endpoint: 'product', params })
 export const getProduct = (id: string) => get({ endpoint: `product/${id}` })
 export const addProduct = (data: AddProduct) => post({ endpoint: 'product', data })
 export const updateProduct = (data: UpdateProduct) => patch({ endpoint: 'product', data })

@@ -11,6 +11,8 @@ import { Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { camelCaseToCapitalized } from '../../utils';
+import { useAppSelector } from '../../hooks/selctor.dispatch.hook';
+import TableLoader from '../../components/UI/TableLoader';
 
 function createData(
     name: string,
@@ -39,50 +41,65 @@ const TableElement = ({ data }: any) => {
     const navigate = useNavigate()
     console.log('data', data)
     const headings = data.length ? Object.keys(data[0]) : []
-    console.log('headings', headings)
     const handelRowClick = (id: string) => {
         navigate(id)
     }
+    useEffect(() => {
+        const headings = data.length ? Object.keys(data[0]) : []
+        console.log('headings', headings)
 
-    return (
-        <TableContainer component={Paper} sx={{ maxHeight: 440 }} >
-            <Table stickyHeader sx={{ minWidth: 650, }} aria-label="simple table">
-                <TableHead >
-                    <TableRow >
-                        {
-                            headings.map((item: any) => {
-                                return (<>
+    }, [data])
 
-                                    <TableCell sx={{ borderTopRightRadius: 2, backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>{camelCaseToCapitalized(item)}</Typography> </TableCell>
-                                </>)
-                            })
-                        }
+    const { loader } = useAppSelector((state) => state.loader)
 
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map((row: any, index: any) => (
-                        <TableRow
-                            sx={{ cursor: 'pointer' }}
-                            onClick={() => { handelRowClick(row['id']) }}
-                            key={row.name}
-                        >
+    const GetChild = () => {
+        if (loader) {
+            return <TableLoader />
+        } else {
+            return <TableContainer component={Paper} sx={{ maxHeight: 440 }} >
+                <Table stickyHeader sx={{ minWidth: 650, }} aria-label="simple table">
+                    <TableHead >
+                        <TableRow >
                             {
-                                headings.map((col) => {
+                                headings.map((item: any) => {
                                     return (<>
-                                        <TableCell component="th" scope="row">
-                                            <Typography variant='h6'>{(col !== 'id' ? row[col] : index+1)}</Typography>
-                                        </TableCell>
+
+                                        <TableCell sx={{ borderTopRightRadius: 2, backgroundColor: 'rgb(255,245,248)' }}><Typography variant='h5'>{camelCaseToCapitalized(item)}</Typography> </TableCell>
                                     </>)
                                 })
                             }
 
-
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {data.map((row: any, index: any) => (
+                            <TableRow
+                                sx={{ cursor: 'pointer' }}
+                                onClick={() => { handelRowClick(row['id']) }}
+                                key={row.name}
+                            >
+                                {
+                                    headings.map((col) => {
+                                        return (<>
+                                            <TableCell component="th" scope="row">
+                                                <Typography variant='h6'>{(col !== 'id' ? row[col] : index + 1)}</Typography>
+                                            </TableCell>
+                                        </>)
+                                    })
+                                }
+
+
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        }
+    }
+    return (
+
+        <GetChild></GetChild>
+
     );
 }
 

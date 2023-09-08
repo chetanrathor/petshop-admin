@@ -1,5 +1,20 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ProductFilterBrandPayload, ProductFilterBreedTypePayload, ProductFilterSpecyPayload, ProductFilterStatusPayload } from "../types";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ProductFilterBrandPayload, ProductFilterBreedTypePayload, ProductFilterSpecyPayload, ProductFilterStatusPayload, ProductFilters } from "../types";
+import { getProducts } from "../api";
+
+export const fetchProducts = createAsyncThunk(
+    'products/fetchProducs',
+    async (payload: ProductFilters, { rejectWithValue }) => {
+        try {
+            const response = await getProducts(payload)
+            return response.data
+
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
 
 export const productsSlice = createSlice({
     initialState: {
@@ -29,6 +44,13 @@ export const productsSlice = createSlice({
             const { specy } = action.payload
             return { ...state, filters: { ...state.filters, specy } }
         }
+
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
+            const products = action.payload.response.data
+            return { ...state, products }
+        })
     }
 })
 

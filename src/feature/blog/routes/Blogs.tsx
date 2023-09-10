@@ -8,12 +8,14 @@ import { fetchBlogs } from '../state/blog.slice'
 const Blogs = () => {
     const blogs = useAppSelector((state) => state.blog.blogs)
     const dispatch = useAppDispatch()
+    const headings = ['id', 'createdAt']
+
     useEffect(() => {
         dispatch(fetchBlogs({ limit: 0, offset: 0, order: 'DESC' }))
     }, [])
     return (
         <ListLayout>
-            <TableElement data={blogs}></TableElement>
+            <TableElement headingProps={headings} data={blogs}></TableElement>
         </ListLayout>
     )
 }

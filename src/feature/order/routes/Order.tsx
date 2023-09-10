@@ -5,7 +5,7 @@ import TableElement from '../../../shared/components/TableElement'
 const Order = () => {
     return (
         <ListLayout>
-            <TableElement></TableElement>
+            <TableElement data={[]} headingProps={[]}></TableElement>
         </ListLayout>
     )
 }

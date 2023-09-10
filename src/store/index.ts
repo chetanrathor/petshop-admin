@@ -9,6 +9,7 @@ import { brandReducer } from "../feature/brand/state/brand.slice";
 import { speciesReducer } from "../feature/specy/state/specy.slice";
 import { blogReducer, blogSlice } from "../feature/blog/state/blog.slice";
 import { loaderReducer } from "./loaderSlice";
+import { paginationReducer } from "./pagination.slice";
 
 export const store = configureStore({
     reducer: {
@@ -21,7 +22,8 @@ export const store = configureStore({
         brand: brandReducer,
         specy: speciesReducer,
         blog: blogReducer,
-        loader: loaderReducer
+        loader: loaderReducer,
+        pagination: paginationReducer
     }
 })
 

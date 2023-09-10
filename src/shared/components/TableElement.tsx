@@ -37,10 +37,10 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-const TableElement = ({ data }: any) => {
+const TableElement = ({ data,headingProps }: any) => {
     const navigate = useNavigate()
     console.log('data', data)
-    const headings = data.length ? Object.keys(data[0]) : []
+    const headings = headingProps
     const handelRowClick = (id: string) => {
         navigate(id)
     }
@@ -79,7 +79,7 @@ const TableElement = ({ data }: any) => {
                                 key={row.name}
                             >
                                 {
-                                    headings.map((col) => {
+                                    headingProps.map((col:any) => {
                                         return (<>
                                             <TableCell component="th" scope="row">
                                                 <Typography variant='h6'>{(col !== 'id' ? row[col] : index + 1)}</Typography>

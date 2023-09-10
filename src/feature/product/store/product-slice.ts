@@ -1,12 +1,24 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ProductFilterBrandPayload, ProductFilterBreedTypePayload, ProductFilterSpecyPayload, ProductFilterStatusPayload, ProductFilters } from "../types";
-import { getProducts } from "../api";
+import { AddProduct, ProductFilterBrandPayload, ProductFilterBreedTypePayload, ProductFilterSpecyPayload, ProductFilterStatusPayload, ProductFilters } from "../types";
+import { addProduct, getProducts } from "../api";
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducs',
     async (payload: ProductFilters, { rejectWithValue }) => {
         try {
             const response = await getProducts(payload)
+            return response.data
+
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+export const addOneProduct = createAsyncThunk(
+    'products/addProduct',
+    async (payload: AddProduct, { rejectWithValue }) => {
+        try {
+            const response = await addProduct(payload)
             return response.data
 
         } catch (error: any) {

@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { fetchProductCategories } from "../feature/category/state/category.slice";
 import { fetchSpecies } from "../feature/specy/state/specy.slice";
 import { fetchBrands } from "../feature/brand/state/brand.slice";
+import { fetchProducts } from "../feature/product/store/product-slice";
 
 export const loaderSlice = createSlice({
     initialState: { loader: true },
@@ -25,6 +26,9 @@ export const loaderSlice = createSlice({
             return { ...state, loader: false }
         })
         builder.addCase(fetchBrands.fulfilled, (state, { payload }) => {
+            return { ...state, loader: false }
+        })
+        builder.addCase(fetchProducts.fulfilled, (state, { payload }) => {
             return { ...state, loader: false }
         })
        

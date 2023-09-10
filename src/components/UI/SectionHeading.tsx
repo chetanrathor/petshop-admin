@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SelectElement } from '../../shared/components/SelectElement'
 import { RootState } from '../../store'
 import { theme } from '../../theme/theme'
-import { getLastFiveYears } from '../../utils'
+import { getLastFiveYears, geteSelectElementData } from '../../utils'
 import { setYear } from '../../feature/dashboard/state/dashboard.slice'
 import ButtonElement from '../elements/ButtonElement'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../hooks/selctor.dispatch.hook'
+import { useAppDispatch, useAppSelector } from '../../hooks/selctor.dispatch.hook'
 import { setFilterStatus } from '../../feature/user/store/users-slice'
 import { setProductFilterSpecy, setProductFilterStatus } from '../../feature/product/store/product-slice'
-import { setCategoryFilterStatus } from '../../feature/category/state/category.slice'
+import { fetchProductCategories, setCategoryFilterStatus } from '../../feature/category/state/category.slice'
 import { setModalChild, setOpen } from '../../store/modalSlice'
 import { ModalChild } from '../../constants/modal-child'
+import { fetchSpecies } from '../../feature/specy/state/specy.slice'
+import { useEffect } from 'react'
+import { fetchBrands } from '../../feature/brand/state/brand.slice'
 
 const OpenModal = (child: ModalChild) => {
     const dispatch = useAppDispatch()
@@ -63,6 +66,19 @@ const UsersFilters = () => {
     )
 }
 const ProductsFilters = () => {
+    const dispatch = useAppDispatch()
+    useEffect(() => { 
+    dispatch(fetchSpecies({ limit: 0, offset: 0, order: 'DESC' }))
+    dispatch(fetchProductCategories({ limit: 0, offset: 0, order: 'DESC' }))
+    dispatch(fetchBrands({ limit: 0, offset: 0, order: 'DESC' }))
+        
+    }, [])
+    const { specy, category, brand } = useAppSelector((state) => state)
+    const { species } = specy
+    const { categories } = category
+    const { brands } = brand
+
+
     const navigate = useNavigate()
     const productStatus = [
         {
@@ -78,26 +94,24 @@ const ProductsFilters = () => {
             value: 'Deleted'
         }
     ]
-    const petSpecies: any = []
-    const categories: any = []
+    const petSpecies = geteSelectElementData(species)
     const breedType: any = []
-    const brands: any = []
     return (
         <>
             <Grid item width={'14%'}>
-                <SelectElement handleChange={(e) => { setProductFilterSpecy({ specy: e.target.value }) }} menuItem={petSpecies}></SelectElement>
+                <SelectElement inputLabel={'Species'} handleChange={(e) => { setProductFilterSpecy({ specy: e.target.value }) }} menuItem={petSpecies}></SelectElement>
             </Grid>
             <Grid item width={'14%'}>
-                <SelectElement handleChange={() => { }} menuItem={categories}></SelectElement>
+                <SelectElement inputLabel={'Categories'} handleChange={() => { }} menuItem={geteSelectElementData(categories)}></SelectElement>
             </Grid>
             <Grid item width={'14%'}>
-                <SelectElement handleChange={() => { }} menuItem={breedType}></SelectElement>
+                <SelectElement inputLabel={'Breed Type'} handleChange={() => { }} menuItem={breedType}></SelectElement>
             </Grid>
             <Grid item width={'14%'}>
-                <SelectElement handleChange={() => { }} menuItem={brands}></SelectElement>
+                <SelectElement inputLabel={'Brands'} handleChange={() => { }} menuItem={geteSelectElementData(brands)}></SelectElement>
             </Grid>
             <Grid item width={'14%'}>
-                <SelectElement handleChange={(e) => { setProductFilterStatus({ status: e.target.value }) }} menuItem={productStatus}></SelectElement>
+                <SelectElement inputLabel={'Status'} handleChange={(e) => { setProductFilterStatus({ status: e.target.value }) }} menuItem={productStatus}></SelectElement>
             </Grid>
             <Grid item width={'14%'}>
                 <Button fullWidth variant='contained' sx={{ paddingX: 3, paddingY: 2, marginX: 'auto' }} onClick={() => { navigate('products/add') }}>Add</Button>

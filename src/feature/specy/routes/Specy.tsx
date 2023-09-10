@@ -12,9 +12,11 @@ const Specy = () => {
     useEffect(() => {
         dispatch(fetchSpecies({ limit: 0, offset: 0, order: 'DESC' }))
     }, [])
+    const headings = ['id','createdAt','name','status']
+
     return (
         <ListLayout>
-            <TableElement data={species}></TableElement>
+            <TableElement headingProps={headings} data={species}></TableElement>
         </ListLayout>
     )
 }

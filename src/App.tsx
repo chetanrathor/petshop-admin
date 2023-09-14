@@ -4,9 +4,12 @@ import AppProvier from './provider/AppProvier';
 import AppRoute from './routes';
 function App() {
   return (
-    <AppProvier>
-      <AppRoute></AppRoute>
-    </AppProvier>
+    // <AppProvier>
+    //   <AppRoute></AppRoute>
+    // </AppProvier>
+    <>
+      hello
+    </>
   );
 }
 export default App;

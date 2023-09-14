@@ -8,7 +8,7 @@ export type AddProduct = {
     mrp: number,
     sellingPrice: number,
     description: string,
-    isOnSale: true,
+    isOnSale: boolean,
     specy: string,
     category: string,
     discount: number,
@@ -37,6 +37,12 @@ export type ProductFilterBreedTypePayload = {
 export type ProductFilterSpecyPayload = {
     specy: string
 }
+export type ProductFilterCategoryPayload = {
+    category: string
+}
+export type ProductFilterSearchPayload = {
+    search: string
+}
 
 
 export type Product = {
@@ -56,5 +62,5 @@ export type Product = {
 
 export type GetProducts = {
     data: Product[],
-    totalCount: string
+    totalCount: number
 }  

@@ -6,17 +6,24 @@ import { fetchProducts } from '../store/product-slice'
 
 const Product = () => {
 
-    const { products } = useAppSelector((state) => state.product)
+    const { pagination, product, centralSearch } = useAppSelector((state) => state)
+    const { products } = product
+    const { limit, offset } = pagination
     const dispatch = useAppDispatch()
-
+    const headings = ['id', 'createdAt', 'status', 'name', 'mrp', 'sellingPrice', 'isOnSale']
     useEffect(() => {
-        dispatch(fetchProducts({ limit: 0, offset: 0, order: 'DESC' }))
+        dispatch(fetchProducts({ limit, offset, order: 'DESC' }))
     }, [])
+    useEffect(() => {
+        const { search } = centralSearch
+        dispatch(fetchProducts({ limit, offset, order: 'DESC', search }))
+
+    }, [centralSearch])
 
     return (
 
         <ListLayout>
-            <TableElement data={products}></TableElement>
+            <TableElement headingProps={headings} data={products}></TableElement>
         </ListLayout>
 
     )

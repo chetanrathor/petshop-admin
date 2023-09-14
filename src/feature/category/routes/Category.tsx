@@ -5,18 +5,26 @@ import axios from 'axios'
 import { getCategories } from '../api'
 import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook'
 import { fetchProductCategories } from '../state/category.slice'
+import { setOffset } from '../../../store/pagination.slice'
 
 const Category = () => {
-    const categories = useAppSelector((state) => state.category.categories)
+    const { category, pagination } = useAppSelector((state) => state)
+    const { categories } = category
+    const { limit, offset, } = pagination
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(fetchProductCategories({ limit: 0, offset: 0, order: 'DESC' }))
+        dispatch(setOffset(0))
+        dispatch(fetchProductCategories({ limit, offset, order: 'DESC' }))
     }, [])
-    console.log('categories==================', categories)
+    useEffect(() => {
+        dispatch(fetchProductCategories({ limit, offset, order: 'DESC' }))
+
+    }, [offset])
+    const headings = ['id', 'createdAt', 'name', 'status']
     return (
         <ListLayout>
-            <TableElement data={categories}></TableElement>
+            <TableElement headingProps={headings} data={categories}></TableElement>
         </ListLayout>
     )
 }

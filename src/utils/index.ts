@@ -19,3 +19,21 @@ export function camelCaseToCapitalized(str: string) {
 
     return capitalizedStr;
 }
+type Type<T> = {
+    [key: string]: T;
+};
+export const geteSelectElementData = (data: any[]) => {
+
+    const keys = Object.keys(data)
+    //['id','createdAt','deletedAt','name']
+    const keysTobeCheck = ['id', 'name']
+
+   return data.map((item: any) => {
+        let child = {
+            name: item.name,
+            value: item.id
+        }
+        return child
+    })
+
+}

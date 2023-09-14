@@ -11,9 +11,11 @@ const Brand = () => {
         dispatch(fetchBrands({ limit: 0, offset: 0, order: 'DESC' }))
     }, [])
     console.log('brands==============================', brands)
+    const headings = ['id', 'createdAt', 'name', 'status']
+
     return (
         <ListLayout>
-            <TableElement data={brands}></TableElement>
+            <TableElement headingProps={headings} data={brands}></TableElement>
         </ListLayout>
     )
 }

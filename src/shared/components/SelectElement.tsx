@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, MenuItem, SxProps, Theme } from '@mui/material'
+import { FormControl, FormHelperText, InputLabel, MenuItem, SxProps, Theme } from '@mui/material'
 import React from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useSelector } from 'react-redux';
@@ -12,22 +12,25 @@ export type MenuItem = {
 export type SelectElementProperties = {
     menuItem: MenuItem[],
     handleChange: (e: SelectChangeEvent) => void,
-    value?: string
+    value?: string,
+    inputLabel?:string
 }
-export const SelectElement = ({ menuItem, handleChange, value }: SelectElementProperties) => {
+export const SelectElement = ({ menuItem, handleChange, value,inputLabel }: SelectElementProperties) => {
     return (
         <FormControl sx={{ m: 1, width: '100%' }} >
+            <InputLabel id="demo-simple-select-label">{inputLabel}</InputLabel>
             <Select
-
+              
                 fullWidth
                 value={value}
                 onChange={(e) => { handleChange(e) }}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}
+
             >
                 {menuItem.map((item) => {
                     return (
-                        <MenuItem value={item.value} >{item.name}</MenuItem>
+                        <MenuItem key={item.value} value={item.value} >{item.name}</MenuItem>
                     )
                 })}
             </Select>

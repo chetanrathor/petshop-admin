@@ -27,6 +27,7 @@ export type CategoryFilterStatusPayload = {
 }
 
 export type GetCategories = {
-    data: Category[]
+    data: Category[],
+    totalCount:number
 }
 

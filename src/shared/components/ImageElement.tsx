@@ -1,12 +1,15 @@
-import React from 'react'
+import { Grid, SxProps, Theme } from '@mui/material'
+import React, { CSSProperties } from 'react'
 interface Properties {
     height?: string,
     width?: string,
     src: string,
-    isPublicAsset: boolean
+    isPublicAsset: boolean,
+    style?: CSSProperties
+
 }
 
-const ImageElement = ({ height, isPublicAsset, src, width }: Properties) => {
+const ImageElement = ({ height, isPublicAsset, src, width, style }: Properties) => {
 
     const getSource = () => {
         if (isPublicAsset) {
@@ -15,7 +18,9 @@ const ImageElement = ({ height, isPublicAsset, src, width }: Properties) => {
         return src
     }
     return (
-        <img height={height} width={width} src={getSource()}></img>
+
+        <img height={height} width={width} style={style} src={getSource()}></img>
+
     )
 }
 

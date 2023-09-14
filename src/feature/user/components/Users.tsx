@@ -17,7 +17,7 @@ const Users = () => {
         // </Grid>
         <>
             <ListLayout>
-                <TableElement></TableElement>
+                <TableElement headingProps={[]} data={[]}></TableElement>
             </ListLayout>
         </>
 

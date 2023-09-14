@@ -1,5 +1,4 @@
 import { Card, CardContent, Grid, Typography } from '@mui/material';
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Tooltip } from "chart.js";
 import { Chart } from 'react-chartjs-2';
 import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook';
 import { theme } from '../../../theme/theme';
@@ -86,15 +85,15 @@ const Dashboard = () => {
     const dispatch = useAppDispatch()
     dispatch(fetchDashboardData(year))
 
-    ChartJS.register(
-        LinearScale,
-        CategoryScale,
-        BarElement,
-        PointElement,
-        LineElement,
-        Legend,
-        Tooltip
-    );
+    // ChartJS.register(
+    //     LinearScale,
+    //     CategoryScale,
+    //     BarElement,
+    //     PointElement,
+    //     LineElement,
+    //     Legend,
+    //     Tooltip
+    // );
 
     return (
 

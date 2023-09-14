@@ -1,6 +1,4 @@
 import { Box, Grid, Typography } from '@mui/material'
-import React from 'react'
-import { theme } from '../../../theme/theme'
 import ImageElement from '../../../shared/components/ImageElement'
 
 const ConsultationDetails = () => {

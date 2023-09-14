@@ -1,9 +1,6 @@
-import React from 'react'
-import ListLayout from '../../../components/layout/ListLayout'
-import TableElement from '../../../shared/components/TableElement'
+import React from 'react';
 import { Route, Routes } from 'react-router-dom'
 import Appointment from './Appointment'
-
 const AppointmentRoutes = () => {
     return (
         <Routes>
@@ -11,5 +8,4 @@ const AppointmentRoutes = () => {
         </Routes>
     )
 }
-
 export default AppointmentRoutes

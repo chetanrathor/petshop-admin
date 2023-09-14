@@ -1,49 +1,37 @@
-import { Button, Grid, Typography } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
-import { SelectElement } from '../../shared/components/SelectElement'
-import { RootState } from '../../store'
-import { theme } from '../../theme/theme'
-import { getLastFiveYears, geteSelectElementData } from '../../utils'
-import { setYear } from '../../feature/dashboard/state/dashboard.slice'
-import ButtonElement from '../elements/ButtonElement'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../hooks/selctor.dispatch.hook'
-import { setFilterStatus } from '../../feature/user/store/users-slice'
-import { setProductFilterBrand, setProductFilterBreedType, setProductFilterCategory, setProductFilterSpecy, setProductFilterStatus } from '../../feature/product/store/product-slice'
-import { fetchProductCategories, setCategoryFilterStatus } from '../../feature/category/state/category.slice'
-import { setModalChild, setOpen } from '../../store/modalSlice'
-import { ModalChild } from '../../constants/modal-child'
-import { fetchSpecies } from '../../feature/specy/state/specy.slice'
-import { useEffect } from 'react'
-import { fetchBrands } from '../../feature/brand/state/brand.slice'
-import { BreedType } from '../../constants/breed-type'
-
-const OpenModal = (child: ModalChild) => {
-    const dispatch = useAppDispatch()
-    dispatch(setOpen(true))
-    dispatch(setModalChild(child))
-
-}
+import { Button, Grid, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { BreedType } from '../../constants/breed-type';
+import { ModalChild } from '../../constants/modal-child';
+import { fetchBrands } from '../../feature/brand/state/brand.slice';
+import { fetchProductCategories, setCategoryFilterStatus } from '../../feature/category/state/category.slice';
+import { setYear } from '../../feature/dashboard/state/dashboard.slice';
+import { setProductFilterBrand, setProductFilterBreedType, setProductFilterCategory, setProductFilterSpecy, setProductFilterStatus } from '../../feature/product/store/product-slice';
+import { fetchSpecies } from '../../feature/specy/state/specy.slice';
+import { setFilterStatus } from '../../feature/user/store/users-slice';
+import { useAppDispatch, useAppSelector } from '../../hooks/selctor.dispatch.hook';
+import { SelectElement } from '../../shared/components/SelectElement';
+import { RootState } from '../../store';
+import { setModalChild, setOpen } from '../../store/modalSlice';
+import { theme } from '../../theme/theme';
+import { getLastFiveYears, geteSelectElementData } from '../../utils';
 
 const DashboardFilters = () => {
     const dispatch = useDispatch()
     const selectedYear = useSelector((state: RootState) => state.dashboard.year)
-
     const years = getLastFiveYears()
-
     return (
         <>
             <Grid item lg={4}>
                 <SelectElement value={selectedYear.toString()} handleChange={(e) => { dispatch(setYear(Number(e.target.value))) }} menuItem={years}></SelectElement>
             </Grid>
-
         </>
     )
 }
 const UsersFilters = () => {
     const dispatch = useAppDispatch()
     const status = useSelector((state: RootState) => state.users.filters.status)
-
     const menuItems = [
         {
             name: 'Active',
@@ -72,14 +60,11 @@ const ProductsFilters = () => {
         dispatch(fetchSpecies({ limit: 0, offset: 0, order: 'DESC' }))
         dispatch(fetchProductCategories({ limit: 0, offset: 0, order: 'DESC' }))
         dispatch(fetchBrands({ limit: 0, offset: 0, order: 'DESC' }))
-
-    }, [])
+    }, [dispatch])
     const { specy, category, brand } = useAppSelector((state) => state)
     const { species } = specy
     const { categories } = category
     const { brands } = brand
-
-
     const navigate = useNavigate()
     const productStatus = [
         {
@@ -133,7 +118,6 @@ const ProductsFilters = () => {
         </>
     )
 }
-
 const CategroriesFilters = () => {
     const dispatch = useAppDispatch()
     const categoriesStatus = [
@@ -161,7 +145,6 @@ const CategroriesFilters = () => {
         </>
     )
 }
-
 const SpeciesFilters = () => {
     const speciesStatus = [
         {
@@ -178,9 +161,7 @@ const SpeciesFilters = () => {
         }
     ]
     const dispatch = useAppDispatch()
-
     return (
-
         <>
             <Grid item lg={4}>
                 <SelectElement handleChange={() => { }} menuItem={speciesStatus}></SelectElement>
@@ -207,9 +188,7 @@ const BrandsFilter = () => {
         }
     ]
     const dispatch = useAppDispatch()
-
     return (
-
         <>
             <Grid item lg={4}>
                 <SelectElement handleChange={() => { }} menuItem={brandsStatus}></SelectElement>
@@ -220,38 +199,27 @@ const BrandsFilter = () => {
         </>
     )
 }
-
 const Filters = (Properties: { globalState: string }) => {
     const { globalState } = Properties
     switch (globalState) {
         case 'Dashboard':
             return <DashboardFilters></DashboardFilters>
-
         case 'Users':
             return <UsersFilters></UsersFilters>
-
         case 'Products':
             return <ProductsFilters></ProductsFilters>
-
         case 'Categories':
             return <CategroriesFilters></CategroriesFilters>
         case 'Species':
             return <SpeciesFilters></SpeciesFilters>
         case 'Brands':
             return <BrandsFilter></BrandsFilter>
-
         default:
             return <DashboardFilters></DashboardFilters>
-
     }
 }
-
-
-
 const SectionHeading = () => {
     const globalState = useSelector((state: RootState) => state.global.activeState)
-    const location = useLocation()
-    // console.log('location', location.)
     const secondaryColor = theme.palette.secondary.main
     return (
         <Grid container justifyContent={'space-between'} py={4} alignItems={'center'}>
@@ -260,10 +228,8 @@ const SectionHeading = () => {
             </Grid>
             <Grid item container lg={globalState === 'Products' ? 10 : 6} justifyContent={'end'} gap={3} alignItems={'center'}>
                 <Filters globalState={globalState} ></Filters>
-
             </Grid>
         </Grid>
     )
 }
-
 export default SectionHeading

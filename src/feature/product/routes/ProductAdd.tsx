@@ -45,7 +45,6 @@ const ProductAdd = () => {
         dispatch(fetchProductCategories({ limit: 0, offset: 0, order: 'DESC' }))
         dispatch(fetchSpecies({ limit: 0, offset: 0, order: 'DESC', }))
     }, [])
-    const primaryColor = theme.palette.primary.main
     const [images, SetImage] = useState({
         image1: '',
         image2: '',
@@ -119,7 +118,7 @@ const ProductAdd = () => {
                                 {
                                     categories.map((item) => {
                                         return (
-                                            <MenuItem value={item.id}>{item.name}</MenuItem>
+                                            <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
                                         )
                                     })
                                 }
@@ -147,7 +146,7 @@ const ProductAdd = () => {
                                 {
                                     species.map((item) => {
                                         return (
-                                            <MenuItem value={item.id}>{item.name}</MenuItem>
+                                            <MenuItem key={item.id} value={item.id}>{item.name}</MenuItem>
 
                                         )
                                     })

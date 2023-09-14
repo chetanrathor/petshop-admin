@@ -1,17 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { dashboardReducer } from "../feature/dashboard/state/dashboard.slice";
-import { globalReducer } from "./globalSlice";
-import { usersReducer } from "../feature/user/store/users-slice";
-import { productReducer } from "../feature/product/store/product-slice";
-import { categoryReducer } from "../feature/category/state/category.slice";
-import { modalReducer } from "./modalSlice";
+import { blogReducer } from "../feature/blog/state/blog.slice";
 import { brandReducer } from "../feature/brand/state/brand.slice";
+import { categoryReducer } from "../feature/category/state/category.slice";
+import { dashboardReducer } from "../feature/dashboard/state/dashboard.slice";
+import { productReducer } from "../feature/product/store/product-slice";
 import { speciesReducer } from "../feature/specy/state/specy.slice";
-import { blogReducer, blogSlice } from "../feature/blog/state/blog.slice";
-import { loaderReducer } from "./loaderSlice";
-import { paginationReducer } from "./pagination.slice";
+import { usersReducer } from "../feature/user/store/users-slice";
 import { centralSearchReducer } from "./centralSearch";
-
+import { globalReducer } from "./globalSlice";
+import { loaderReducer } from "./loaderSlice";
+import { modalReducer } from "./modalSlice";
+import { paginationReducer } from "./pagination.slice";
 export const store = configureStore({
     reducer: {
         dashboard: dashboardReducer,
@@ -28,6 +27,5 @@ export const store = configureStore({
         centralSearch: centralSearchReducer
     }
 })
-
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

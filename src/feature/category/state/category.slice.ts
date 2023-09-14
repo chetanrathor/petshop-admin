@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CategoryFilterStatusPayload, CategorySlice, CatgoryFilter } from "../types";
 import { getCategories } from "../api";
+import { CategoryFilterStatusPayload, CategorySlice, CatgoryFilter } from "../types";
 
 export const fetchProductCategories = createAsyncThunk(
     'categories/fetchProductCategories',
@@ -16,7 +16,7 @@ export const fetchProductCategories = createAsyncThunk(
 )
 
 const initialState = {
-    categories: new Array(),
+    categories: [],
     filters: { status: 'Active' }
 } as unknown as CategorySlice
 export const categorySlice = createSlice({

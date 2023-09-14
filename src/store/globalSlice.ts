@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GlobalState } from "../constants/global-state";
 
 export const globalSlice = createSlice({
     initialState: {

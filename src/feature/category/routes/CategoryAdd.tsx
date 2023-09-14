@@ -1,10 +1,8 @@
-import { Grid, Typography, TextField, FormControl, Select, MenuItem, Button } from '@mui/material'
-import React, { useState } from 'react'
-import { addCategory } from '../api'
-import axios from 'axios'
+import { Button, Grid, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
 import { useAppDispatch } from '../../../hooks/selctor.dispatch.hook'
+import { addCategory } from '../api'
 import { fetchProductCategories } from '../state/category.slice'
-import { setOpen } from '../../../store/modalSlice'
 
 const CategoryAdd = () => {
     const [categoryName, setCategoryName] = useState('')

@@ -1,12 +1,19 @@
 export type Card = {
-    id: string,
-    name: string,
-    value: string
+    productsCount: number
+    brandsCount: number
+    ordersCount: number
+    appointmentsCount: number
+    usersCount: number
+    consultationsCount: number
+    blogsCount: number
+    transactionsCount: number
+    totalProfit: number
+    totalLoss: number
 }
 
 export type Dashboard = {
     graph: any,
-    card: Card[],
+    card: Card,
     year: number
 }
 

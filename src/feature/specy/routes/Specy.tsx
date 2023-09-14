@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import ListLayout from '../../../components/layout/ListLayout'
-import TableElement from '../../../shared/components/TableElement'
 import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook'
-import { useDispatch } from 'react-redux'
+import TableElement from '../../../shared/components/TableElement'
 import { fetchSpecies } from '../state/specy.slice'
 
 const Specy = () => {

@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import ListLayout from '../../../components/layout/ListLayout'
-import TableElement from '../../../shared/components/TableElement'
-import axios from 'axios'
-import { getCategories } from '../api'
 import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook'
-import { fetchProductCategories } from '../state/category.slice'
+import TableElement from '../../../shared/components/TableElement'
 import { setOffset } from '../../../store/pagination.slice'
+import { fetchProductCategories } from '../state/category.slice'
 
 const Category = () => {
     const { category, pagination } = useAppSelector((state) => state)
@@ -16,10 +14,9 @@ const Category = () => {
     useEffect(() => {
         dispatch(setOffset(0))
         dispatch(fetchProductCategories({ limit, offset, order: 'DESC' }))
-    }, [])
+    }, [dispatch])
     useEffect(() => {
         dispatch(fetchProductCategories({ limit, offset, order: 'DESC' }))
-
     }, [offset])
     const headings = ['id', 'createdAt', 'name', 'status']
     return (

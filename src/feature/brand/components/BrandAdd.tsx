@@ -1,6 +1,6 @@
-import { Grid, Typography, TextField, FormControl, Select, MenuItem, Button } from '@mui/material'
-import React, { useState } from 'react'
-
+import React from 'react';
+import { Button, Grid, TextField, Typography } from '@mui/material'
+import { useState } from 'react'
 const BrandAdd = () => {
     const [brandName, setBrandName] = useState('')
     return (
@@ -22,5 +22,4 @@ const BrandAdd = () => {
         </Grid>
     )
 }
-
 export default BrandAdd

@@ -1,8 +1,5 @@
-import { FormControl, FormHelperText, InputLabel, MenuItem, SxProps, Theme } from '@mui/material'
-import React from 'react'
+import { FormControl, InputLabel, MenuItem } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
 
 export type MenuItem = {
     value: string,
@@ -34,7 +31,6 @@ export const SelectElement = ({ menuItem, handleChange, value,inputLabel }: Sele
                     )
                 })}
             </Select>
-            {/* <FormHelperText>Without label</FormHelperText> */}
         </FormControl>
     )
 }

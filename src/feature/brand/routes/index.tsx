@@ -1,6 +1,4 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Specy from './Brand'
 import Brand from './Brand'
 
 const BrandRoutes = () => {

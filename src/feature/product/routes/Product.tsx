@@ -6,7 +6,7 @@ import { fetchProducts } from '../store/product-slice'
 
 const Product = () => {
 
-    const { pagination, product } = useAppSelector((state) => state)
+    const { pagination, product, centralSearch } = useAppSelector((state) => state)
     const { products } = product
     const { limit, offset } = pagination
     const dispatch = useAppDispatch()
@@ -14,6 +14,11 @@ const Product = () => {
     useEffect(() => {
         dispatch(fetchProducts({ limit, offset, order: 'DESC' }))
     }, [])
+    useEffect(() => {
+        const { search } = centralSearch
+        dispatch(fetchProducts({ limit, offset, order: 'DESC', search }))
+
+    }, [centralSearch])
 
     return (
 

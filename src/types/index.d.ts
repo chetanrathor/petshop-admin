@@ -33,3 +33,4 @@ export type ModalSlice = {
     open: boolean,
     children: ModalChild
 }
+

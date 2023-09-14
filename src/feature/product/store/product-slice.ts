@@ -1,5 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AddProduct, ProductFilterBrandPayload, ProductFilterBreedTypePayload, ProductFilterSpecyPayload, ProductFilterStatusPayload, ProductFilters } from "../types";
+import { AddProduct, ProductFilterBrandPayload, ProductFilterBreedTypePayload, ProductFilterCategoryPayload, ProductFilterSearchPayload, ProductFilterSpecyPayload, ProductFilterStatusPayload, ProductFilters } from "../types";
 import { addProduct, getProducts } from "../api";
 
 export const fetchProducts = createAsyncThunk(
@@ -35,7 +35,9 @@ export const productsSlice = createSlice({
             status: '',
             specy: '',
             brand: '',
-            breedType: ''
+            breedType: '',
+            category: '',
+            search: ''
         }
     },
     name: 'products/slice',
@@ -55,6 +57,14 @@ export const productsSlice = createSlice({
         setProductFilterSpecy: (state, action: PayloadAction<ProductFilterSpecyPayload>) => {
             const { specy } = action.payload
             return { ...state, filters: { ...state.filters, specy } }
+        },
+        setProductFilterCategory: (state, action: PayloadAction<ProductFilterCategoryPayload>) => {
+            const { category } = action.payload
+            return { ...state, filters: { ...state.filters, category } }
+        },
+        setProductFilterSearch: (state, action: PayloadAction<ProductFilterSearchPayload>) => {
+            const { search } = action.payload
+            return { ...state, filters: { ...state.filters, search } }
         }
 
     },
@@ -68,4 +78,4 @@ export const productsSlice = createSlice({
 
 
 export const productReducer = productsSlice.reducer
-export const { setProductFilterBrand, setProductFilterBreedType, setProductFilterSpecy, setProductFilterStatus } = productsSlice.actions
+export const { setProductFilterBrand, setProductFilterBreedType, setProductFilterCategory, setProductFilterSpecy, setProductFilterStatus } = productsSlice.actions

@@ -30,7 +30,7 @@ export const SelectElement = ({ menuItem, handleChange, value,inputLabel }: Sele
             >
                 {menuItem.map((item) => {
                     return (
-                        <MenuItem key={item.name} value={item.value} >{item.name}</MenuItem>
+                        <MenuItem key={item.value} value={item.value} >{item.name}</MenuItem>
                     )
                 })}
             </Select>

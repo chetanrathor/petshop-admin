@@ -10,6 +10,7 @@ import { speciesReducer } from "../feature/specy/state/specy.slice";
 import { blogReducer, blogSlice } from "../feature/blog/state/blog.slice";
 import { loaderReducer } from "./loaderSlice";
 import { paginationReducer } from "./pagination.slice";
+import { centralSearchReducer } from "./centralSearch";
 
 export const store = configureStore({
     reducer: {
@@ -23,7 +24,8 @@ export const store = configureStore({
         specy: speciesReducer,
         blog: blogReducer,
         loader: loaderReducer,
-        pagination: paginationReducer
+        pagination: paginationReducer,
+        centralSearch: centralSearchReducer
     }
 })
 

@@ -37,6 +37,12 @@ export type ProductFilterBreedTypePayload = {
 export type ProductFilterSpecyPayload = {
     specy: string
 }
+export type ProductFilterCategoryPayload = {
+    category: string
+}
+export type ProductFilterSearchPayload = {
+    search: string
+}
 
 
 export type Product = {

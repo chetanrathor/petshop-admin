@@ -19,7 +19,7 @@ const ImageElement = ({ height, isPublicAsset, src, width, style }: Properties) 
     }
     return (
 
-        <img height={height} width={width} style={style} src={getSource()}></img>
+        <img  height={height} width={width} style={style} src={getSource()}></img>
 
     )
 }

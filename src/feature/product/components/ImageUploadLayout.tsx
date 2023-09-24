@@ -27,7 +27,7 @@ const ImageUploadLayout = ({ imagePath,children }: Properties) => {
         <Grid item width={'25%'} sx={{ cursor: 'pointer' }} maxWidth={'218px'} height={'124px'} position={'relative'} borderRadius={'6px'} border={`1.5px dashed ${primaryColor}`} >
             {children}
             {imagePath &&
-                <ImageElement height='100%' width='100%' isPublicAsset={false} src={imagePath} style={{ position: 'absolute', top: 0, left: 0 }}></ImageElement>
+                <ImageElement  height='100%' width='100%' isPublicAsset={false} src={imagePath} style={{ position: 'absolute', top: 0, left: 0 }}></ImageElement>
             }
 
             {!imagePath &&

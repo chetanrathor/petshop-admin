@@ -9,8 +9,10 @@ import ImageUploadLayout from '../components/ImageUploadLayout'
 import { fetchProductCategories } from '../../category/state/category.slice'
 import { fetchSpecies } from '../../specy/state/specy.slice'
 import { BreedType } from '../../../constants/breed-type'
-import { addOneProduct } from '../store/product-slice'
+import { addOneProduct, fetchProducts } from '../store/product-slice'
 import { InStock } from '../../../constants/instock'
+import { addProductSchema } from '../validations/add-product'
+import { useNavigate } from 'react-router-dom'
 
 const ProductAdd = () => {
     const { brands } = useAppSelector((state) => state.brand)
@@ -40,6 +42,7 @@ const ProductAdd = () => {
         }
     ]
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     useEffect(() => {
         dispatch(fetchBrands({ limit: 0, offset: 0, order: 'DESC' }))
         dispatch(fetchProductCategories({ limit: 0, offset: 0, order: 'DESC' }))
@@ -70,10 +73,15 @@ const ProductAdd = () => {
         onSubmit: (values) => {
             console.log('values', values)
             const imageUrls = Object.values(images)
-            dispatch(addOneProduct({
+            dispatch(
+                addOneProduct({
                 ...values, productImages: [...imageUrls], name: values.title
-            }))
-        }
+            })
+            )
+            dispatch(fetchProducts({limit:10,offset:0,order:'DESC'}))
+            navigate('/products')
+        },
+        validationSchema: addProductSchema 
     })
     const handelFileChange = (e: React.ChangeEvent<HTMLInputElement>, imageKey: string) => {
         if (e.target.files) {
@@ -86,6 +94,7 @@ const ProductAdd = () => {
                 // formik.setFieldValue(image1, objectUrl)
             }
         }
+        console.log('images', images)
     }
     const categoryRef = useRef<Window>(null)
     const handleSelectScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
@@ -97,6 +106,14 @@ const ProductAdd = () => {
 
     const { brand, category, mrp, specy, sellingPrice, title, discount, breedType, inStock, isOnSale, description } = formik.values
     const { handleChange } = formik
+    const handelDiscountChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        handleChange(e);
+        let discountedPrice = ((formik.values.mrp / 100) * Number(e.target.value));
+        let sellingPrice = formik.values.mrp - discountedPrice
+        sellingPrice = sellingPrice <= 0 ? 0 : sellingPrice
+        formik.setFieldValue('sellingPrice', sellingPrice);
+        // console.log('formik.values', formik.values)
+    }
     return (
         <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit() }}>
 
@@ -110,6 +127,9 @@ const ProductAdd = () => {
                     <Grid width={'48%'}>
                         <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Product Title/Name</Typography>
                         <TextField id='title' name='title' value={title} onChange={formik.handleChange} fullWidth ></TextField>
+                        {formik.errors.title && formik.errors.title ? (
+                            <div>{formik.errors.title}</div>
+                        ) : null}
                     </Grid>
                     <Grid width={'48%'}>
                         <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Category</Typography>
@@ -131,9 +151,11 @@ const ProductAdd = () => {
                         <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Maximum Retail Price</Typography>
                         <TextField id='mrp' type='number' name='mrp' onChange={handleChange} value={mrp} fullWidth ></TextField>
                     </Grid>
+
+
                     <Grid width={'48%'}>
-                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Selling Price</Typography>
-                        <TextField id='sellingPrice' type='number' name='sellingPrice' onChange={handleChange} value={sellingPrice} fullWidth ></TextField>
+                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Discount (in percent)</Typography>
+                        <TextField type='number' id='discount' name='discount' onChange={(e) => { handelDiscountChange(e) }} value={discount} fullWidth ></TextField>
                     </Grid>
 
                 </Grid>
@@ -157,8 +179,8 @@ const ProductAdd = () => {
                         </FormControl>
                     </Grid>
                     <Grid width={'48%'}>
-                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Discount</Typography>
-                        <TextField type='number' id='discount' name='discount' onChange={handleChange} value={discount} fullWidth ></TextField>
+                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Selling Price</Typography>
+                        <TextField disabled id='sellingPrice' type='number' name='sellingPrice' value={sellingPrice} fullWidth ></TextField>
                     </Grid>
 
                 </Grid>
@@ -201,6 +223,7 @@ const ProductAdd = () => {
                         {/* <TextField fullWidth ></TextField> */}
                         <FormControl fullWidth>
                             <Select id='inStock' name='inStock' onChange={handleChange} value={inStock}>
+                                <MenuItem value={''} selected >Select Availablity</MenuItem>
                                 {inStocks.map((item) => {
                                     return (
                                         <MenuItem key={item.name} value={item.value}>{item.name}</MenuItem>
@@ -217,23 +240,9 @@ const ProductAdd = () => {
 
                 </Grid>
                 <Grid item container paddingBottom={5} justifyContent={'space-between'}>
-                    <Grid width={'48%'}>
-                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Availablity</Typography>
-                        {/* <TextField fullWidth ></TextField> */}
-                        <FormControl fullWidth>
-                            <Select id='inStock' name='inStock' onChange={handleChange} value={inStock}>
-                                {inStocks.map((item) => {
-                                    return (
-                                        <MenuItem key={item.name} value={item.value}>{item.name}</MenuItem>
-                                    )
-                                })}
-
-                            </Select>
-                        </FormControl>
-                    </Grid>
-                    <Grid width={'48%'}>
-                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>On Sale</Typography>
-                        <TextField id='description' name='description' value={description} onChange={handleChange}></TextField>
+                    <Grid width={'100%'}>
+                        <Typography variant='h5' marginBottom={1} color={'#68686A'} fontWeight={500}>Description</Typography>
+                        <textarea rows={10} style={{ width: '100%', resize: 'none' }} id='description' name='description' value={description} onChange={handleChange}></textarea>
                     </Grid>
 
                 </Grid>

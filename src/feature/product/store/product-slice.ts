@@ -31,6 +31,7 @@ export const addOneProduct = createAsyncThunk(
 export const productsSlice = createSlice({
     initialState: {
         products: new Array(),
+        totalCount: 0,
         filters: {
             status: '',
             specy: '',
@@ -70,8 +71,8 @@ export const productsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            const products = action.payload.response.data
-            return { ...state, products }
+            const { data, totalCount } = action.payload.response
+            return { ...state, products: data, totalCount }
         })
     }
 })

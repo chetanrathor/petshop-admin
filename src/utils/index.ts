@@ -28,3 +28,9 @@ export const geteSelectElementData = (data: any[]) => {
         return child
     })
 }
+export const capitalized = (str:string) => {
+    const [char,...rest] = str
+    // return `${char.toUpperCase(),rest}`
+    // return `${str.charAt(0).toUpperCase()}${rest.toString()}`
+    return `${str.charAt(0).toUpperCase()}${str.substring(1)}`
+}

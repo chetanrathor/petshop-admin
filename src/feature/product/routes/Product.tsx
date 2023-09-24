@@ -13,6 +13,7 @@ const Product = () => {
     const headings = ['id', 'createdAt', 'status', 'name', 'mrp', 'sellingPrice', 'isOnSale']
     useEffect(() => {
         dispatch(fetchProducts({ limit, offset, order: 'DESC' }))
+       
     }, [])
     useEffect(() => {
         const { search } = centralSearch

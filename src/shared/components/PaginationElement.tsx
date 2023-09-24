@@ -11,7 +11,7 @@ const PaginationElement = () => {
         return page
     }
     return (
-        <Pagination count={totalPages} color="primary" defaultPage={1} page={pageNumber(limit, offset, totalPages)} onChange={(e, page) => { dispatch(setOffset(limit * (page - 1))) }} />
+        <Pagination count={totalPages} color="primary" defaultPage={1} page={Math.ceil(offset / limit) + 1} onChange={(e, page) => { dispatch(setOffset(limit * (page - 1))) }} />
     )
 }
 

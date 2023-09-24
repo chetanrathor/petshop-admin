@@ -1,7 +1,7 @@
 import { Button, Grid, Typography } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { BreedType } from '../../constants/breed-type';
 import { ModalChild } from '../../constants/modal-child';
 import { fetchBrands } from '../../feature/brand/state/brand.slice';
@@ -15,7 +15,7 @@ import { SelectElement } from '../../shared/components/SelectElement';
 import { RootState } from '../../store';
 import { setModalChild, setOpen } from '../../store/modalSlice';
 import { theme } from '../../theme/theme';
-import { getLastFiveYears, geteSelectElementData } from '../../utils';
+import { capitalized, getLastFiveYears, geteSelectElementData } from '../../utils';
 
 const DashboardFilters = () => {
     const dispatch = useDispatch()
@@ -83,16 +83,16 @@ const ProductsFilters = () => {
     const petSpecies = geteSelectElementData(species)
     const breedType = [
         {
-            name:'Small',
-            value:BreedType.SMALL
+            name: 'Small',
+            value: BreedType.SMALL
         },
         {
-            name:'Medium',
-            value:BreedType.MEDIUM
+            name: 'Medium',
+            value: BreedType.MEDIUM
         },
         {
-            name:'Large',
-            value:BreedType.LARGE
+            name: 'Large',
+            value: BreedType.LARGE
         }
     ]
     return (
@@ -219,7 +219,21 @@ const Filters = (Properties: { globalState: string }) => {
     }
 }
 const SectionHeading = () => {
-    const globalState = useSelector((state: RootState) => state.global.activeState)
+    const location = useLocation()
+    const [globalState, setGlobalState] = useState('')
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+
+            setGlobalState('Dashboard')
+        } else {
+            const state = location.pathname.split('/')
+            console.log('location', state)
+            setGlobalState(capitalized(state[1]))
+
+        }
+    }, [location])
+    // const globalState = useSelector((state: RootState) => state.global.activeState)
     const secondaryColor = theme.palette.secondary.main
     return (
         <Grid container justifyContent={'space-between'} py={4} alignItems={'center'}>

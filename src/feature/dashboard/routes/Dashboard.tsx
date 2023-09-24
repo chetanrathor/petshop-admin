@@ -96,46 +96,46 @@ const Dashboard = () => {
     // );
 
     return (
+        <>Dashboard</>
+        // <Grid container gap={2}>
 
-        <Grid container gap={2}>
+        //     {
+        //         cards.map((item) => {
+        //             return (
 
-            {
-                cards.map((item) => {
-                    return (
+        //                 <Card sx={{ minWidth: 275, paddingX: 5, paddingY: 4, border: 'none' }} key={item.id}>
+        //                     <CardContent sx={{ gap: 3 }}>
+        //                         <Typography variant='h2' color={secondary} gutterBottom>
+        //                             {item.value}
+        //                         </Typography>
+        //                         <Typography variant="body2">
+        //                             {item.name}
+        //                         </Typography>
+        //                     </CardContent>
 
-                        <Card sx={{ minWidth: 275, paddingX: 5, paddingY: 4, border: 'none' }} key={item.id}>
-                            <CardContent sx={{ gap: 3 }}>
-                                <Typography variant='h2' color={secondary} gutterBottom>
-                                    {item.value}
-                                </Typography>
-                                <Typography variant="body2">
-                                    {item.name}
-                                </Typography>
-                            </CardContent>
+        //                 </Card>
+        //             )
+        //         })
+        //     }
+        //     <Grid container>
 
-                        </Card>
-                    )
-                })
-            }
-            <Grid container>
-
-                <Grid item lg={8}>
-                    <Chart
-                        type={'line'}
-                        data={data}
-                    />
-                </Grid>
-                <Grid >
-                    <Chart
-                        type={'line'}
-                        data={data}
-                    />
-                </Grid>
-            </Grid>
+        //         <Grid item lg={8}>
+        //             <Chart
+        //                 type={'line'}
+        //                 data={data}
+        //             />
+        //         </Grid>
+        //         <Grid >
+        //             <Chart
+        //                 type={'line'}
+        //                 data={data}
+        //             />
+        //         </Grid>
+        //     </Grid>
 
 
 
-        </Grid>
+        // </Grid>
     )
 }
 

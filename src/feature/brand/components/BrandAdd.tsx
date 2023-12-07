@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button, Grid, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
+import { useAppDispatch } from '../../../hooks/selctor.dispatch.hook';
+import { createBrand } from '../state/brand.slice';
 const BrandAdd = () => {
     const [brandName, setBrandName] = useState('')
+    const dispatch = useAppDispatch()
     return (
         <Grid width={'30%'} container flexDirection={'column'} bgcolor={'white'} boxShadow={'0px 0px 55px 0px rgba(0, 0, 0, 0.06)'} padding={5} borderRadius={'14px'}>
             <Grid item>
@@ -16,7 +19,9 @@ const BrandAdd = () => {
                     <TextField value={brandName} onChange={(e) => { setBrandName(e.target.value) }} fullWidth ></TextField>
                 </Grid>
                 <Grid width={'100%'} justifySelf={'end'}>
-                    <Button variant='contained' onClick={() => { }} >Add Brand</Button>
+                    <Button variant='contained' onClick={() => {
+                        dispatch(createBrand({ name: brandName }))
+                    }} >Add Brand</Button>
                 </Grid>
             </Grid>
         </Grid>

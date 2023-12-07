@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getBrands } from "../api";
-import { BrandFilters, BrandSlice, BrandsFilterStatusPayload } from "../types";
+import { addBrand, getBrands } from "../api";
+import { AddBrand, BrandFilters, BrandSlice, BrandsFilterStatusPayload } from "../types";
 export const fetchBrands = createAsyncThunk(
     'brands/fetchbrands',
     async (payload: BrandFilters, { rejectWithValue }) => {
@@ -12,6 +12,19 @@ export const fetchBrands = createAsyncThunk(
         }
     }
 )
+export const createBrand = createAsyncThunk(
+    'brands/create',
+    async (payload: AddBrand, { rejectWithValue }) => {
+        try {
+            const response = await addBrand(payload)
+            return response.data
+        } catch (error: any) {
+            return rejectWithValue(error.response.data)
+        }
+    }
+)
+
+
 const initialState = {
     brands: [],
     filters: { status: 'Active' }

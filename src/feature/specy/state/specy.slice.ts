@@ -1,12 +1,23 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getSpecies } from "../api";
-import { SpeciesFilterStatusPayload, SpecyFilters, SpecySlice } from "../types";
+import { addSpecy, getSpecies } from "../api";
+import { AddSpecy, SpeciesFilterStatusPayload, SpecyFilters, SpecySlice } from "../types";
 
 export const fetchSpecies = createAsyncThunk(
     'species/fetchSpecies',
     async (payload: SpecyFilters, { rejectWithValue }) => {
         try {
             const response = await getSpecies(payload);
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+export const createSpecy = createAsyncThunk(
+    'species/create',
+    async (payload: AddSpecy, { rejectWithValue }) => {
+        try {
+            const response = await addSpecy(payload);
             return response.data;
         } catch (error: any) {
             return rejectWithValue(error.response.data);

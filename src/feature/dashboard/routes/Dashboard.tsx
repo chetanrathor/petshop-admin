@@ -1,5 +1,5 @@
 import { Card, CardContent, Grid, Typography } from '@mui/material';
-import { Chart } from 'react-chartjs-2';
+// import { Chart } from 'react-chartjs-2';
 import { useAppDispatch, useAppSelector } from '../../../hooks/selctor.dispatch.hook';
 import { theme } from '../../../theme/theme';
 import { fetchDashboardData } from '../state/dashboard.slice';
@@ -120,16 +120,16 @@ const Dashboard = () => {
             <Grid container>
 
                 <Grid item lg={8}>
-                    <Chart
+                    {/* <Chart
                         type={'line'}
                         data={data}
-                    />
+                    /> */}
                 </Grid>
                 <Grid >
-                    <Chart
+                    {/* <Chart
                         type={'line'}
                         data={data}
-                    />
+                    /> */}
                 </Grid>
             </Grid>
 
